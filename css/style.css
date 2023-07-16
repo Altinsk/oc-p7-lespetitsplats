@@ -50,7 +50,6 @@ body {
     justify-content: flex-start;
     align-items: baseline;
     line-height: 3em;
-
 }
 
 .form-control {
@@ -85,8 +84,9 @@ body {
 }
 
 .filters {
-    margin-left: 1em;
+    margin-left: 4.5em;
     margin-top: 2em;
+    padding: 1em;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -122,193 +122,85 @@ body {
     margin-top: -5px !important;
   }
 
-#filter-btn {
-    padding: 1.2em;
-}
-
 .fa-angle-down {
     margin-left: 4em;
     color: #9b9da1;
 } 
 
+.card-img-top {
+    object-fit: cover;
+    width: 100%;
+    max-width: 20em;
+    height: 20em;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.cuttoff-text {
+    --max-lines: 4; 
+    overflow: hidden;
+     
+    display: -webkit-box; 
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--max-lines);
+  }
 
 /* On screens that are 992px wide or less, the background color is blue */
 @media screen and (max-width: 991.98px) {
-    body {
-      background-color: blue;
-      color: white;
+    .filters {
+        margin-left: 2em;
     }
   }
   
-  /* On screens that are 600px wide or less, the background color is olive */
-  @media screen and (max-width: 575.98px) {
-    body {
-      background-color: olive;
-      color: white;
+/* On screens that are 706px wide or less, the background color is olive */
+@media screen and (min-width:705.98px) and  (max-width: 991.98px) {
+    .filters {
+        margin-left: 0.3em;
     }
-  }
-
-
-
-/* 
-.advanced-search {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 4em;
-}
-.mag-glass {
-  border: 1px solid white;
-  width: 100%;
-  padding: 9px 4px 9px 4px;
-  background-image: url("../css/media/mg.svg");
-  background-size: 0.7em;
-  background-repeat: no-repeat;
-  background-position: 0.6em center;
 }
 
-.select-box{
-    margin-left: 2em;
-    margin-top: 0.5em;
-    width: 15em;
-    position: relative;
+  /* On screens that are 600px wide or less, the background color is olive */
+@media screen and (max-width: 705.98px) {
+    .filters {
+        margin-left: 0em;
+        padding: 0.3em;
+        gap: 1em;
+    }
+    #filter-btn {
+        padding: 0;
+    }
+    .fa-angle-down {
+        margin-left: 0;
+    }
+    .drop-menu {
+        padding: 0;
+    }
+    .min-width-btn {
+        min-width: 10px;
+    }
+    .logo-img {
+        width: 70%;
+        height: 100%;
+        max-height: 5em;
+        object-fit: cover;
+    }
+    #input-group {
+        width: 100%;
+        /* max-width: 21.5em; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-items: baseline;
+        line-height: 1em;
+    }
+    .header-content {
+        align-items: flex-start;
+    }
+    #input-search {
+        font-size: 1em;
+    }
+
 }
-
-.select-option {
-    position: relative;
-}
-
-.select-option p {
-    width: 100%;
-    background-color: white;
-    color: black;
-    border-radius: 0.5em;
-    cursor: pointer;
-    font-size: 1.2em;
-    padding: 1em 1.1em;
-    border: 0 !important;
-    outline: 0 !important;
-    margin-top: 1em;
-    margin-bottom: -5px;
-}
-
-.select-option:after {
-    content: "";
-    border-top: 12px solid black;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    position: absolute;
-    right: 1.5em;
-    top: 3em;
-    margin-top: -18px;
-}
-
-.content {
-    background-color: white;
-    color: black;
-    position: absolute;
-    width: 100%;
-    z-index: 999;
-    padding: 5px;
-    border-radius: 0 0 7px 7px;
-    display: none;
-}
-
-.search-option input {
-    width: 100%;
-    max-width: 180px;
-    font-size: 1em;
-    padding: 0.9em;
-    outline: 0;
-    border: 0.5px sold lightgrey;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    margin-inline: 10px;
-}
-
-.options {
-    margin-top: 10px;
-    max-height: 250px;
-    overflow-y: auto;
-    padding: 0;
-} 
-
-.options li {
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 21px;
-    cursor: pointer;
-}
-
-.options li:hover {
-    background-color: lightgray;
-}
-
-.select-box.active .content {
-    display: block;
-}
-
-#grid {
-    margin-top: 4em;
-    display: grid;
-    padding: 2em;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1.2em;
-}
-
-.recipeCard {
-    width: 100%;
-    max-width: 25em;
-    height: auto;
-    background-color: white;
-    border-radius: 0.9em;
-}
-
-.sections {
-    width: 100%;
-    max-width: 25em;
-}
-
-.recipe-Description {
-    width: 100%;
-    max-height: 50%;
-    padding: 1em;
-}
-
-.recipe-Description p {
-    overflow: hidden;
-    max-height: 4.1em;
-    text-overflow: ellipsis;
-    white-space: collapse;
-}
-
-.recipe-Description h2 {
-    font-size: 1.2em;
-    line-height: 1.9em;
-    font-weight: bold;
-}
-
-.photo {
-    object-fit: cover;
-    width: 100%;
-    max-width: 25em;
-    height: 20em;
-    border-radius: 0.9em 0.9em 0 0;
-}
-
-.time-Span p {
-    background-color: #FFD15B;
-    border-radius: 0.4em;
-    position: relative;
-    right: -21em;
-    top: -250px;
-    text-align: center;
-    width: 90%;
-    max-width: 3em;
-}
-
-.recipe-Ingredient {
-    padding: 10px 15px;
-}
- */
-

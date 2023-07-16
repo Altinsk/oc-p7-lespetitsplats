@@ -1,57 +1,86 @@
 // Declare global variables
 let filteredRecipes = recipes;
 
+// Card creation
 function renderRecipeGrid() { 
   // Get the container element where the cards will be displayed
-  const container = document.getElementById("card-container");
+  const cardContainer = document.getElementById("card-container");
 
   // Remove recipe container children
-  container.replaceChildren();
+  cardContainer.replaceChildren();
 
   // Generate the grid of cards
   filteredRecipes.forEach((recipe) => {
     // Create card column 
     const cardColumn = document.createElement("div");
-    cardColumn.classList.add("col");
+    cardColumn.classList.add("col", "mb-5");
+    cardColumn.style.borderRadius = "2em 2em 0 0";
 
     // Create a card element
     const cardElement = document.createElement("div");
-    cardElement.classList.add("card", "h-100");
+    cardElement.classList.add("card", "h-100", "border-0");
+    cardElement.style.maxWidth = "20em";
+    cardElement.style.marginTop = "3em";
+    cardElement.style.borderRadius = "2em 2em 2em 2em";
+
 
     // Create the card image
     const cardImage = document.createElement("img");
     cardImage.classList.add("card-img-top");
     cardImage.src = `css/media/${recipe.image}`;
     cardImage.alt = "recipe picture";
+    cardImage.style.borderRadius = "2em 2em 0 0";
+
 
     // Create the card body
     const cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
 
     // Create the card title
-    const cardTitle = document.createElement("h5");
-    cardTitle.classList.add("card-title");
+    const cardTitle = document.createElement("h2");
+    cardTitle.classList.add("card-title", "fs-4", "fw-bolder", "mb-5");
     cardTitle.textContent = recipe.name;
+
+    // Create the description title
+    const cardDescriptionTitle = document.createElement("p");
+    cardDescriptionTitle.classList.add("card-title", "fs-5", "fw-light");
+    cardDescriptionTitle.textContent = "RECETTE";
 
     // Create the card description
     const cardContent = document.createElement("p");
-    cardContent.classList.add("card-text");
+    cardContent.classList.add("card-text", "cuttoff-text", "fs-5", "mb-5");
     cardContent.textContent = recipe.description;
+
+    // Create the Ingredient title
+    const cardIngredientTitle = document.createElement("p");
+    cardIngredientTitle.classList.add("card-title", "fs-5", "fw-light");
+    cardIngredientTitle.textContent = "INGRÉDIENTS";
 
     // Create the card ingredients
     const ingredientContainer = document.createElement("div");
     ingredientContainer.classList.add("row", "row-cols-1", "row-cols-md-2", "g-4");
     recipe.ingredients.forEach((ingredient) => {
+
+      // Ingredient filter tags <li> into <ul>
+      recipe.ingredients.map(obj => {
+        const ingredientTags = document.createElement("li");
+        ingredientTags.textContent = obj.ingredient;
+        const ingredientUl = document.getElementById("ingredient-filter");
+        ingredientUl.appendChild(ingredientTags);
+        // console.log(ingredientTags);
+      });
+
       // Create the ingredient body
       const ingredientElement = document.createElement("div");
 
       // Create the ingredient label
       const ingredientLabel = document.createElement("p");
       ingredientLabel.textContent = ingredient.ingredient;
+      ingredientLabel.classList.add("card-text", "fs-5", "m-0", "ps-3");
 
-      // ingredientLabel.classList.add("card-text");
       // Create the ingredient quantity
       const ingredientQuantity = document.createElement("p");
+      ingredientQuantity.classList.add("card-text", "fs-5", "fw-light", "ps-3");
       let unitLabel = "";
       if ("unit" in ingredient) {
         switch (ingredient.unit) {
@@ -77,7 +106,9 @@ function renderRecipeGrid() {
 
     // Append the title, content and ingredient container to the card body
     cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardDescriptionTitle);
     cardBody.appendChild(cardContent);
+    cardBody.appendChild(cardIngredientTitle);
     cardBody.appendChild(ingredientContainer);
 
     // Append the card body to the card column
@@ -87,7 +118,7 @@ function renderRecipeGrid() {
     cardColumn.appendChild(cardElement);
 
     // Append the card element to the container
-    container.appendChild(cardColumn);
+    cardContainer.appendChild(cardColumn);
   });
 }
 
