@@ -27,7 +27,8 @@
             <div class="header-content">
                 <h1>CHERCHER PARMI PLUS DE 1500 RECETTES <br> DU QUOTIDEIN,SIMPLES ET DÉLICIEUSES</h1>
                 <div id="input-group">
-                    <input type="text" class="form-control input-lg" class="h-50" placeholder="Rechercher une recette un ingrédient ..." aria-label="Rechercher une recette un ingrédient" aria-describedby="basic-addon2">
+                    <input id="input-search" type="text" class="form-control input-lg" class="h-50" placeholder="Rechercher une recette un ingrédient ..." aria-label="Rechercher une recette un ingrédient" aria-describedby="basic-addon2"
+                    oninput="inputEventCallback()">
                     <span id="btn-secondary" class="h-50" type="button">
                         <i class="fa fa-search"></i>
                     </span> 
@@ -36,82 +37,84 @@
         </div>
     </header>
     <main>
-        <div class="dropdown">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-              Ingrédients
-            </button>
-            <form class="dropdown-menu p-4">
-              <div class="mb-3">
-                <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="">
-                <ul class="">
-                    <li><a class="dropdown-item" href="#">Menu item</a></li>
-                    <li><a class="dropdown-item" href="#">Menu item</a></li>
-                    <li><a class="dropdown-item" href="#">Menu item</a></li>
-                  </ul>
+        <div class="filters">
+            <div class="dropdown bg-light rounded">
+                <div id="filter-btn" class="btn btn-primary bg-light text-dark border-0 rounded min-width-btn" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                    <button type="button" class="border-0 bg-light">
+                        Ingrédients
+                        <span>
+                            <i class="fa-solid fa-angle-down bg-light"></i>
+                        </span>    
+                    </button> 
                 </div>
-              </div>
-            </form>
+                <form class="dropdown-menu p-4 rounded-0 rounded-right rounded-left rounded-bottom border-0 min-width-btn bg-light mt-n1 shadow-none">
+                    <div class="mb-3">
+                        <div class="input-upper-part">
+                            <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="">
+                            <span> 
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </span>
+                        </div>
+                        <ul class="">
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <div class="dropdown bg-light rounded">
+                <div id="filter-btn" class="btn btn-primary bg-light text-dark border-0 rounded min-width-btn" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                    <button type="button" class="border-0 bg-light">
+                        Appareils
+                        <span>
+                            <i class="fa-solid fa-angle-down bg-light"></i>
+                        </span>    
+                    </button> 
+                </div>
+                <form class="dropdown-menu p-4 rounded-0 rounded-right rounded-left rounded-bottom border-0 min-width-btn bg-light mt-n1 shadow-none">
+                    <div class="mb-3">
+                        <div class="input-upper-part">
+                            <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="">
+                            <span> 
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </span>
+                        </div>
+                        <ul class="">
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <div class="dropdown bg-light rounded">
+                <div id="filter-btn" class="btn btn-primary bg-light text-dark border-0 rounded min-width-btn" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                    <button type="button" class="border-0 bg-light">
+                        Ustensiles
+                        <span>
+                            <i class="fa-solid fa-angle-down bg-light"></i>
+                        </span>    
+                    </button> 
+                </div>
+                <form class="dropdown-menu p-4 rounded-0 rounded-right rounded-left rounded-bottom border-0 min-width-btn bg-light mt-n1 shadow-none">
+                    <div class="mb-3">
+                        <div class="input-upper-part">
+                            <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="">
+                            <span> 
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </span>
+                        </div>
+                        <ul class="">
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                            <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>    
         </div>
+            <div id="card-container" class="row row-cols-1 row-cols-md-3 g-4"></div> 
     </main>
-    <!-- <div class="advanced-search">
-        <div class="select-box select-box1">
-            <div class="select-option select-option1">
-                <p> Ingrédient </p>
-            </div>
-            <div class="content">
-                <div class="search-option search-option1">
-                    <input type="text" name="" id="optionSearch1" placeholder="search">
-                    <ul class="options options1">
-                        <li>HTML1</li>
-                        <li>CSS1</li>
-                        <li>SASS1</li>
-                        <li>COMMAND LINE1</li>
-                        <li>JS1</li>
-                        <li>GIT1</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="select-box select-box2">
-            <div class="select-option select-option2">
-                <p> Appareils </p>
-            </div>
-            <div class="content">
-                <div class="search-option search-option2">
-                    <input type="text" name="" id="optionSearch2" placeholder="search">
-                    <ul class="options options2">
-                        <li>HTML2</li>
-                        <li>CSS1</li>
-                        <li>SASS1</li>
-                        <li>COMMAND LINE1</li>
-                        <li>JS1</li>
-                        <li>GIT1</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="select-box select-box3">
-            <div class="select-option select-option3">
-                <p> Ustensiles </p>
-            </div>
-            <div class="content">
-                <div class="search-option search-option3">
-                    <input type="text" name="" id="optionSearch3" placeholder="search">
-                    <ul class="options options3">
-                        <li>HTML3</li>
-                        <li>CSS1</li>
-                        <li>SASS1</li>
-                        <li>COMMAND LINE1</li>
-                        <li>JS1</li>
-                        <li>GIT1</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="grid">
-
-    </div> -->
 </body>
 </html>

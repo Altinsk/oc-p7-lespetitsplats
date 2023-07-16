@@ -78,8 +78,62 @@ body {
     z-index: 999;
 }
 
+.btn {
+    margin-top: 0;
+    text-align: left;
+    
+}
+
+.filters {
+    margin-left: 1em;
+    margin-top: 2em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6em;
+}
+
+.form-control {
+    margin-top: 1em;
+}
+
+.input-upper-part {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.fa-magnifying-glass {
+    margin-left: -1.5em;
+}
+
+.button-dropdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 7em;
+}
+
+.min-width-btn {
+    min-width: 160px;
+}
+
+.mt-n1 {
+    margin-top: -5px !important;
+  }
+
+#filter-btn {
+    padding: 1.2em;
+}
+
+.fa-angle-down {
+    margin-left: 4em;
+    color: #9b9da1;
+} 
+
+
 /* On screens that are 992px wide or less, the background color is blue */
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 991.98px) {
     body {
       background-color: blue;
       color: white;
@@ -87,7 +141,7 @@ body {
   }
   
   /* On screens that are 600px wide or less, the background color is olive */
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 575.98px) {
     body {
       background-color: olive;
       color: white;
