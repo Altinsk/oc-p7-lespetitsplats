@@ -23,14 +23,12 @@ function renderRecipeGrid() {
     cardElement.style.marginTop = "3em";
     cardElement.style.borderRadius = "2em 2em 2em 2em";
 
-
     // Create the card image
     const cardImage = document.createElement("img");
     cardImage.classList.add("card-img-top");
     cardImage.src = `css/media/${recipe.image}`;
     cardImage.alt = "recipe picture";
     cardImage.style.borderRadius = "2em 2em 0 0";
-
 
     // Create the card body
     const cardBody = document.createElement("div");
