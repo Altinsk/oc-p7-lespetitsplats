@@ -121,7 +121,9 @@ function renderRecipeGrid() {
 }
 
 // Filter recipes
-function inputEventCallback() {
+const inputSearchBar = document.getElementById("input-search");
+
+inputSearchBar.addEventListener("input", function() {
   let inputText = document.getElementById("input-search").value;
   console.log(inputText);
   filteredRecipes = recipes.filter(recipe => 
@@ -130,7 +132,7 @@ function inputEventCallback() {
     recipe.ingredients.includes(inputText)
   );
   renderRecipeGrid();
-}
+});
 
 renderRecipeGrid();
 
