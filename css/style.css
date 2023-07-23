@@ -84,13 +84,13 @@ body {
 }
 
 .filters {
-    margin-left: 4.5em;
+    /* margin-left: 4.5em; */
     margin-top: 2em;
     padding: 1em;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 6em;
+    gap: 8em;
 }
 
 .form-control {
@@ -154,14 +154,15 @@ body {
     margin-bottom: 10px; /* Added */
 }
 
+#recipe-count {
+    font-size: 18px;
+    font-weight: bolder;
+    line-height: 1em;
+}
 
-/* On screens that are 992px wide or less, the background color is blue */
-@media screen and (max-width: 1999.98px) {
-    .filters {
-        justify-content: space-around;
-    }
-  }
-  
+.dropdowns {
+    margin-bottom: 10px;
+}
 /* On screens that are between 706px and 992px */
 @media screen and (min-width:705.98px) and  (max-width: 991.98px) {
     .filters {
@@ -172,10 +173,14 @@ body {
     }
     #filter-btn {
         padding: 0em;
-        margin: 0.5em;
     }
     #input-group {
         padding-inline: 3em;
+    }
+    #recipe-count {
+        font-size: 14px;
+        font-weight: bolder;
+        line-height: 0.5em;
     }
 }
 
@@ -185,11 +190,10 @@ body {
         justify-content: space-around;
         margin-left: 0em;
         padding: 0.2em;
-        gap: 0.5em;
+        gap: 2.5em;
     }
     #filter-btn {
         padding: 0em;
-        margin: 0.5em;
     }
     .fa-angle-down {
         margin-left: 0;
@@ -233,6 +237,9 @@ body {
     .col {
         min-width: 280px;
     }
+    #recipe-count {
+        font-size: 11px;
+    }
 }
 
   /* On screens that are 600px wide or less, the background color is olive */
@@ -240,12 +247,11 @@ body {
     .filters {
         justify-content: center;
         margin-left: 0em;
-        padding: 0.2em;
+        padding: 0.1em;
         gap: 0.5em;
     }
     #filter-btn {
         padding: 0;
-        margin: 0.5em;
     }
     .fa-angle-down {
         margin-left: 0;
@@ -288,5 +294,8 @@ body {
     }
     .col {
         min-width: 280px;
+    }
+    #recipe-count {
+        font-size: 8px;
     }
 }

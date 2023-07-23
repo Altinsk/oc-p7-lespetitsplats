@@ -1,16 +1,40 @@
+// import { includeCaseInsensitive } from "./helpers.js";
+
 // Declare global variables
-let filteredRecipes = recipes;
+// let filteredRecipes = recipes;
+
+// Helper functions to generate ingredients, appliances and ustensils lists 
+function generateIngredientList(inputRecipes) {
+  let ingredientList = [];
+  inputRecipes.forEach(recipe => 
+    recipe.ingredients.forEach(element =>
+      ingredientList.push(element.ingredient)
+    )
+  );
+  // Update the array and remove duplicates
+  let uniqueIngredientList = [...new Set(ingredientList)];
+  return uniqueIngredientList;
+}
+
+function generateApplianceList(inputRecipes) {
+  
+}
+
+function generateUstensilList(inputRecipes) {
+  
+}
 
 // Card creation
-function renderRecipeGrid() { 
+function renderRecipeGrid(inputRecipes) { 
   // Get the container element where the cards will be displayed
   const cardContainer = document.getElementById("card-container");
 
   // Remove recipe container children
   cardContainer.replaceChildren();
 
+  console.log(inputRecipes);
   // Generate the grid of cards
-  filteredRecipes.forEach((recipe) => {
+  inputRecipes.forEach((recipe) => {
     // Create card column 
     const cardColumn = document.createElement("div");
     cardColumn.classList.add("col", "mb-5");
@@ -57,16 +81,57 @@ function renderRecipeGrid() {
     // Create the card ingredients
     const ingredientContainer = document.createElement("div");
     ingredientContainer.classList.add("row", "row-cols-1", "row-cols-md-2", "g-4");
+
+    // Populate ingredient list
+    const ingredientUl = document.getElementById("ingredient-filter");
+    ingredientUl.style.paddingLeft = "0";
+    ingredientUl.replaceChildren();
+    let ingredientList =  generateIngredientList(inputRecipes);
+    console.log(ingredientList);
+    ingredientList.forEach((ingredient) => {
+      const ingredientTags = document.createElement("li");
+      ingredientTags.style.listStyle =  "none";
+      ingredientTags.style.textAlign = "left";
+      ingredientTags.style.marginTop = "0.5em";
+      ingredientTags.textContent = ingredient;
+      ingredientUl.appendChild(ingredientTags);
+    });
+
     recipe.ingredients.forEach((ingredient) => {
 
-      // Ingredient filter tags <li> into <ul>
-      recipe.ingredients.map(obj => {
-        const ingredientTags = document.createElement("li");
-        ingredientTags.textContent = obj.ingredient;
-        const ingredientUl = document.getElementById("ingredient-filter");
-        ingredientUl.appendChild(ingredientTags);
-        // console.log(ingredientTags);
+      // // Ingredient filter tags <li> into <ul>
+      // recipe.ingredients.map(item => {
+      //   // console.log(item);
+      //   const ingredientTags = document.createElement("li");
+      //   ingredientTags.style.listStyle =  "none";
+      //   ingredientTags.style.textAlign = "left";
+      //   ingredientTags.textContent = item.ingredient;
+      //   const ingredientUl = document.getElementById("ingredient-filter");
+      //   ingredientUl.style.paddingLeft = "0";
+      //   ingredientUl.appendChild(ingredientTags);
+      // });
+
+      // Appliances filter tags <li> into <ul>
+      recipe.ustensils.map(item => {
+      const ustensilsTags = document.createElement("li");
+      ustensilsTags.style.listStyle =  "none";
+      ustensilsTags.style.textAlign = "left";
+      ustensilsTags.style.marginTop = "0.5em";
+      ustensilsTags.textContent = item;
+      const UstensilsUl = document.getElementById("ustensils-filter");
+      UstensilsUl.style.paddingLeft = "0";
+      UstensilsUl.appendChild(ustensilsTags);
       });
+
+      // Appliance filter tags <li> into <ul>
+        const applianceTags = document.createElement("li");
+        applianceTags.style.listStyle =  "none";
+        applianceTags.style.textAlign = "left";
+        applianceTags.style.marginTop = "0.5em";
+        applianceTags.textContent = recipe.appliance;
+        const applianceUl = document.getElementById("appliance-filter");
+        applianceUl.style.paddingLeft = "0";
+        applianceUl.appendChild(applianceTags);
 
       // Create the ingredient body
       const ingredientElement = document.createElement("div");
@@ -120,167 +185,57 @@ function renderRecipeGrid() {
   });
 }
 
-// Filter recipes
+// Capture the input elements
 const inputSearchBar = document.getElementById("input-search");
+const inputSearchIngredients = document.getElementById("input-search-ingredients");
 
-inputSearchBar.addEventListener("input", function() {
-  let inputText = document.getElementById("input-search").value;
-  console.log(inputText);
-  filteredRecipes = recipes.filter(recipe => 
-    recipe.name.includes(inputText) || 
-    recipe.description.includes(inputText) ||
-    recipe.ingredients.includes(inputText)
+// Filter recipes
+function filterRecipes() {
+  let searchBarText = inputSearchBar.value;
+  let searchIngredientsText = inputSearchIngredients.value;
+  console.log(searchIngredientsText);
+  let filteredRecipes = recipes.filter(recipe => 
+    // Meet main search criteria
+    (
+      recipe.name.includeCaseInsensitive(searchBarText) || 
+      recipe.description.includeCaseInsensitive(searchBarText) ||
+      recipe.ingredients.some(element => 
+        element.ingredient.includeCaseInsensitive(searchBarText)
+      )
+    ) &&
+    // Meet ingredient search criteria
+    (
+      recipe.ingredients.some(element => 
+        element.ingredient.includeCaseInsensitive(searchIngredientsText)
+      )
+    ) 
+      // &&
+      // // Meet appliance search criteria
+      // (
+      // ) &&
+      // // Meet ustensils search criteria
+      // (
+      // )
+    
+
+
+        
+    //     let filteredRecipes = recipes.filter(recipe => 
+    // recipe.name.includeCaseInsensitive(searchBarText) || 
+    // recipe.description.includeCaseInsensitive(searchBarText) ||
+    // recipe.ingredients.some(element => 
+    //   element.ingredient.includeCaseInsensitive(searchBarText) && 
+    //   element.ingredient.includeCaseInsensitive(searchIngredientsText)
+    // )
   );
-  renderRecipeGrid();
-});
+  renderRecipeGrid(filteredRecipes);
+}
 
-renderRecipeGrid();
+// Add input elements event listeners
+inputSearchBar.addEventListener("input", filterRecipes);
+inputSearchIngredients.addEventListener("input", filterRecipes);
 
-
-
-
-// // global variables 
-// const grid = document.querySelector(".row");
-// // const ingredientItem = document.createElement("li");
-// // const recipeIngredients = document.createElement("ul");
-
-
-
-
-
-// // generate the recipes for each object
-// recipes.forEach((recipe) => {
-//     renderRecipeCard(recipe);
-//     // generate the ingredients for each objects
-//     // recipe.ingredients.forEach((ingredient) => {
-//     //     console.log(typeof ingredient);
-//     //     console.log(ingredient);
-
-//     //     const ingredientItem = document.createElement("li");
-//     //     const recipeIngredients = document.createElement("ul");
-//     //     recipeIngredients.textContent = "Ingredients";
-//     //     const allIngredients = Object.entries(ingredient);
-
-//     //     recipeIngredients.appendChild(ingredientItem);
-//     //     document.getElementById("myList").appendChild(recipeIngredients);
-
-
-        
-//     //     console.log(allIngredients);
-//     //     // console.log(Array.from(allIngredients));
-//     //     // const ingredientEntries = Object.entries(ingredient);
-//     //     // console.log(ingredientEntries);
-//     //     // const merge = ingredientEntries.flat(1);
-//     //     // console.log(merge);
-//     //     // for (let i = 0; i < ingredientEntries.length; i++ ) {
-            
-//     //     //     ingredientItem.innerHTML = `${ingredientEntries[i]}`;
-
-//     //     //     recipeIngredients.appendChild(ingredientItem);
-//     //     // }
-//     //     // return recipeIngredients;
-//     // });
-// });
-
-// // creating recipe cards using DOM 
-// function renderRecipeCard(recipe) {
-//         const recipeCard = document.createElement("div");
-//         recipeCard.setAttribute("class" , "card");
-//         recipeCard.setAttribute("class", "col-4");
-//         // recipeCard.setAttribute("class", "col-sm-12");
-//         // recipeCard.setAttribute("class", "col-md-6");
-//         // recipeCard.style.width = "350px";
-//         const recipePhoto = document.createElement("img");
-//         const photo = `css/media/${recipe.image}`;
-//         recipePhoto.setAttribute("src", photo);
-//         recipePhoto.setAttribute("alt", "recipe picture");
-//         recipePhoto.setAttribute("class" , "card-img-top");
-//         const cardBody = document.createElement("div");
-//         cardBody.setAttribute("class", "card-body");
-//         const recipeDescriptionDiv = document.createElement("div");
-//         recipeDescriptionDiv.setAttribute("class", "recipe-Description");
-//         const recipeTitle = document.createElement("h2");
-//         recipeTitle.innerHTML = `${recipe.name}`;
-//         const recipeTag = document.createElement("p");
-//         recipeTag.textContent = "RECETTE";
-//         const recipeDescription = document.createElement("p");
-//         recipeDescription.textContent = `${recipe.description}`;
-//         const recipeTimeSpan = document.createElement("span");
-//         recipeTimeSpan.setAttribute("class", "badge bg-secondary");
-//         const recipeTime = document.createElement("p");
-//         recipeTime.textContent = `${recipe.time}` + "min"; 
-//         const recipeIngredientTitle = document.createElement("p");
-//         recipeIngredientTitle.setAttribute("id", "myList");
-//         recipeIngredientTitle.textContent = "Ingredients";
-//         const recipeIngredientsDiv = document.createElement("div");
-//         recipeIngredientsDiv.setAttribute("class", "recipe-Ingredient");
-//         const recipeIngredients = document.createElement("ul");
-//         recipeIngredients.textContent = "Ingredients";
-//         const ingredientItem = document.createElement("li");
-//         ingredientItem.innerHTML = "";
-//         // recipeIngredients.innerHTML = `${recipe.ingredients}`;
-
-//         let x = document.getElementById("myList");
-//         const ingredientGrid = document.createElement("grid");
-//         ingredientGrid.setAttribute("class", "col-6");
-
-
-
-        
-//         recipe.ingredients.forEach((ingredient) => {
-//             console.log(typeof ingredient);
-//             console.log(ingredient);
-//             const ingredientEntries = Object.entries(ingredient);
-//             console.log(ingredientEntries);
-//             const merge = ingredientEntries.flat();
-//             console.log(merge);
-//             console.log("merge length", merge.length);
-
-//             for (let i = 0; i < merge.length; i++ ) {
-//                 ingredientItem[i] = merge[i];
-//                 ingredientItem.innerHTML = `${merge[i]}`; 
-//             }
-            
-//             // console.log(Array.from(allIngredients));
-//             // const ingredientEntries = Object.entries(ingredient);
-//             // console.log(ingredientEntries);
-//             // const merge = ingredientEntries.flat(1);
-//             // console.log(merge);
-//             // for (let i = 0; i < ingredientEntries.length; i++ ) {
-                
-//             //     ingredientItem.innerHTML = `${ingredientEntries[i]}`;
-    
-//             //     recipeIngredients.appendChild(ingredientItem);
-//             // }
-//             // return recipeIngredients;
-//         });
-    
-
-//         grid.appendChild(recipeCard);
-//         recipeCard.appendChild(recipePhoto);
-//         recipeCard.appendChild(cardBody);
-//         cardBody.appendChild(recipeDescriptionDiv);
-//         cardBody.appendChild(recipeIngredientsDiv);
-//         recipeCard.appendChild(recipeTimeSpan);
-//         recipeTimeSpan.appendChild(recipeTime);
-//         recipeDescriptionDiv.appendChild(recipeTitle);
-//         recipeDescriptionDiv.appendChild(recipeTag);
-//         recipeDescriptionDiv.appendChild(recipeDescription);
-//         recipeIngredientsDiv.appendChild(recipeIngredientTitle);
-//         recipeIngredientsDiv.appendChild(recipeIngredients);
-//         recipeIngredients.appendChild(ingredientItem);
-        
-//         return recipeCard;
-// }
-
-
-
-
-
-
-
-
-
+renderRecipeGrid(recipes);
 
 
 
