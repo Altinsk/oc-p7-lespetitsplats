@@ -1,28 +1,7 @@
-// import { includeCaseInsensitive } from "./helpers.js";
+import { generateIngredientList } from "./filters.js";
+import { generateApplianceList } from "./filters.js";
+import { generateUstensilList } from "./filters.js";
 
-// Declare global variables
-// let filteredRecipes = recipes;
-
-// Helper functions to generate ingredients, appliances and ustensils lists 
-function generateIngredientList(inputRecipes) {
-  let ingredientList = [];
-  inputRecipes.forEach(recipe => 
-    recipe.ingredients.forEach(element =>
-      ingredientList.push(element.ingredient)
-    )
-  );
-  // Update the array and remove duplicates
-  let uniqueIngredientList = [...new Set(ingredientList)];
-  return uniqueIngredientList;
-}
-
-function generateApplianceList(inputRecipes) {
-  
-}
-
-function generateUstensilList(inputRecipes) {
-  
-}
 
 // Card creation
 function renderRecipeGrid(inputRecipes) { 
@@ -32,7 +11,6 @@ function renderRecipeGrid(inputRecipes) {
   // Remove recipe container children
   cardContainer.replaceChildren();
 
-  console.log(inputRecipes);
   // Generate the grid of cards
   inputRecipes.forEach((recipe) => {
     // Create card column 
@@ -87,15 +65,59 @@ function renderRecipeGrid(inputRecipes) {
     ingredientUl.style.paddingLeft = "0";
     ingredientUl.replaceChildren();
     let ingredientList =  generateIngredientList(inputRecipes);
-    console.log(ingredientList);
+    // console.log(ingredientList);
     ingredientList.forEach((ingredient) => {
       const ingredientTags = document.createElement("li");
       ingredientTags.style.listStyle =  "none";
       ingredientTags.style.textAlign = "left";
-      ingredientTags.style.marginTop = "0.5em";
+      ingredientTags.style.marginTop = "0.3em";
+      ingredientTags.style.paddingTop = "0.3em";
+      ingredientTags.style.paddingBottom = "0.3em";
+      ingredientTags.style.textIndent = "0.8em";
       ingredientTags.textContent = ingredient;
       ingredientUl.appendChild(ingredientTags);
     });
+
+    // Populate appliance list
+    const applianceUl = document.getElementById("appliance-filter");
+    applianceUl.style.paddingLeft = "0";
+    applianceUl.replaceChildren();
+    let applianceList =  generateApplianceList(inputRecipes);
+    applianceList.forEach((appliance) => {
+      const applianceTags = document.createElement("li");
+      applianceTags.style.listStyle =  "none";
+      applianceTags.style.textAlign = "left";
+      applianceTags.style.marginTop = "0.3em";
+      applianceTags.style.paddingTop = "0.3em";
+      applianceTags.style.paddingBottom = "0.3em";
+      applianceTags.style.textIndent = "0.8em";
+      applianceTags.textContent = appliance;
+      applianceUl.appendChild(applianceTags);
+    });
+  
+    // Populate ustensil list
+    const ustensilsUl = document.getElementById("ustensils-filter");
+    ustensilsUl.style.paddingLeft = "0";
+    ustensilsUl.replaceChildren();
+    let ustensilList =  generateUstensilList(inputRecipes);
+    ustensilList.forEach((ustensil) => {
+      const ustensilsTags = document.createElement("li");
+      ustensilsTags.style.listStyle =  "none";
+      ustensilsTags.style.textAlign = "left";
+      ustensilsTags.style.marginTop = "0.3em";
+      ustensilsTags.style.paddingTop = "0.3em";
+      ustensilsTags.style.paddingBottom = "0.3em";
+      ustensilsTags.style.textIndent = "0.8em";
+      ustensilsTags.textContent = ustensil;
+      ustensilsUl.appendChild(ustensilsTags);
+    });
+
+
+
+
+
+
+  
 
     recipe.ingredients.forEach((ingredient) => {
 
@@ -111,27 +133,33 @@ function renderRecipeGrid(inputRecipes) {
       //   ingredientUl.appendChild(ingredientTags);
       // });
 
-      // Appliances filter tags <li> into <ul>
-      recipe.ustensils.map(item => {
-      const ustensilsTags = document.createElement("li");
-      ustensilsTags.style.listStyle =  "none";
-      ustensilsTags.style.textAlign = "left";
-      ustensilsTags.style.marginTop = "0.5em";
-      ustensilsTags.textContent = item;
-      const UstensilsUl = document.getElementById("ustensils-filter");
-      UstensilsUl.style.paddingLeft = "0";
-      UstensilsUl.appendChild(ustensilsTags);
-      });
+      // // Appliances filter tags <li> into <ul>
+      // recipe.ustensils.map(item => {
+      // const ustensilsTags = document.createElement("li");
+      // ustensilsTags.style.listStyle =  "none";
+      // ustensilsTags.style.textAlign = "left";
+      // ustensilsTags.style.marginTop = "0.3em";
+      // ustensilsTags.style.paddingTop = "0.3em";
+      // ustensilsTags.style.paddingBottom = "0.3em";
+      // ustensilsTags.style.textIndent = "0.8em";
+      // ustensilsTags.textContent = item;
+      // const UstensilsUl = document.getElementById("ustensils-filter");
+      // UstensilsUl.style.paddingLeft = "0";
+      // UstensilsUl.appendChild(ustensilsTags);
+      // });
 
-      // Appliance filter tags <li> into <ul>
-        const applianceTags = document.createElement("li");
-        applianceTags.style.listStyle =  "none";
-        applianceTags.style.textAlign = "left";
-        applianceTags.style.marginTop = "0.5em";
-        applianceTags.textContent = recipe.appliance;
-        const applianceUl = document.getElementById("appliance-filter");
-        applianceUl.style.paddingLeft = "0";
-        applianceUl.appendChild(applianceTags);
+      // // Appliance filter tags <li> into <ul>
+      //   const applianceTags = document.createElement("li");
+      //   applianceTags.style.listStyle =  "none";
+      //   applianceTags.style.textAlign = "left";
+      //   applianceTags.style.marginTop = "0.3em";
+      //   applianceTags.style.paddingTop = "0.3em";
+      //   applianceTags.style.paddingBottom = "0.3em";
+      //   applianceTags.style.textIndent = "0.8em";
+      //   applianceTags.textContent = recipe.appliance;
+      //   const applianceUl = document.getElementById("appliance-filter");
+      //   applianceUl.style.paddingLeft = "0";
+      //   applianceUl.appendChild(applianceTags);
 
       // Create the ingredient body
       const ingredientElement = document.createElement("div");
@@ -189,11 +217,20 @@ function renderRecipeGrid(inputRecipes) {
 const inputSearchBar = document.getElementById("input-search");
 const inputSearchIngredients = document.getElementById("input-search-ingredients");
 
+// Add input elements event listeners
+inputSearchBar.addEventListener("input", filterRecipes);
+inputSearchIngredients.addEventListener("input", filterRecipes);
+
 // Filter recipes
 function filterRecipes() {
   let searchBarText = inputSearchBar.value;
   let searchIngredientsText = inputSearchIngredients.value;
-  console.log(searchIngredientsText);
+  // console.log(searchBarText.length);
+  // console.log(searchIngredientsText);
+
+  // if (searchBarText.length >= 3){
+  //   console.log("rr")
+  // }
   let filteredRecipes = recipes.filter(recipe => 
     // Meet main search criteria
     (
@@ -230,10 +267,6 @@ function filterRecipes() {
   );
   renderRecipeGrid(filteredRecipes);
 }
-
-// Add input elements event listeners
-inputSearchBar.addEventListener("input", filterRecipes);
-inputSearchIngredients.addEventListener("input", filterRecipes);
 
 renderRecipeGrid(recipes);
 

@@ -104,7 +104,7 @@ body {
 }
 
 .fa-magnifying-glass {
-    margin-left: -1.5em;
+    margin-left: -2.5em;
 }
 
 .button-dropdown {
@@ -162,7 +162,18 @@ body {
 
 .dropdowns {
     margin-bottom: 10px;
+    margin-inline: 10px;
 }
+
+#ingredient-filter, #appliance-filter, #ustensils-filter {
+    height:15em;
+    overflow-y:auto;
+}
+
+#ingredient-filter li:hover, #appliance-filter li:hover, #ustensils-filter li:hover  {
+    background-color: #FFD15B;
+}
+
 /* On screens that are between 706px and 992px */
 @media screen and (min-width:705.98px) and  (max-width: 991.98px) {
     .filters {
