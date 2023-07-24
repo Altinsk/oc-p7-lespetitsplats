@@ -2,8 +2,7 @@ import { generateIngredientList } from "./filters.js";
 import { generateApplianceList } from "./filters.js";
 import { generateUstensilList } from "./filters.js";
 
-
-// Card creation
+// Card creation index home page
 function renderRecipeGrid(inputRecipes) { 
   // Get the container element where the cards will be displayed
   const cardContainer = document.getElementById("card-container");
@@ -65,7 +64,7 @@ function renderRecipeGrid(inputRecipes) {
     ingredientUl.style.paddingLeft = "0";
     ingredientUl.replaceChildren();
     let ingredientList =  generateIngredientList(inputRecipes);
-    // console.log(ingredientList);
+
     ingredientList.forEach((ingredient) => {
       const ingredientTags = document.createElement("li");
       ingredientTags.style.listStyle =  "none";
@@ -112,54 +111,8 @@ function renderRecipeGrid(inputRecipes) {
       ustensilsUl.appendChild(ustensilsTags);
     });
 
-
-
-
-
-
-  
-
+    // Constructing the cards body and elements
     recipe.ingredients.forEach((ingredient) => {
-
-      // // Ingredient filter tags <li> into <ul>
-      // recipe.ingredients.map(item => {
-      //   // console.log(item);
-      //   const ingredientTags = document.createElement("li");
-      //   ingredientTags.style.listStyle =  "none";
-      //   ingredientTags.style.textAlign = "left";
-      //   ingredientTags.textContent = item.ingredient;
-      //   const ingredientUl = document.getElementById("ingredient-filter");
-      //   ingredientUl.style.paddingLeft = "0";
-      //   ingredientUl.appendChild(ingredientTags);
-      // });
-
-      // // Appliances filter tags <li> into <ul>
-      // recipe.ustensils.map(item => {
-      // const ustensilsTags = document.createElement("li");
-      // ustensilsTags.style.listStyle =  "none";
-      // ustensilsTags.style.textAlign = "left";
-      // ustensilsTags.style.marginTop = "0.3em";
-      // ustensilsTags.style.paddingTop = "0.3em";
-      // ustensilsTags.style.paddingBottom = "0.3em";
-      // ustensilsTags.style.textIndent = "0.8em";
-      // ustensilsTags.textContent = item;
-      // const UstensilsUl = document.getElementById("ustensils-filter");
-      // UstensilsUl.style.paddingLeft = "0";
-      // UstensilsUl.appendChild(ustensilsTags);
-      // });
-
-      // // Appliance filter tags <li> into <ul>
-      //   const applianceTags = document.createElement("li");
-      //   applianceTags.style.listStyle =  "none";
-      //   applianceTags.style.textAlign = "left";
-      //   applianceTags.style.marginTop = "0.3em";
-      //   applianceTags.style.paddingTop = "0.3em";
-      //   applianceTags.style.paddingBottom = "0.3em";
-      //   applianceTags.style.textIndent = "0.8em";
-      //   applianceTags.textContent = recipe.appliance;
-      //   const applianceUl = document.getElementById("appliance-filter");
-      //   applianceUl.style.paddingLeft = "0";
-      //   applianceUl.appendChild(applianceTags);
 
       // Create the ingredient body
       const ingredientElement = document.createElement("div");
