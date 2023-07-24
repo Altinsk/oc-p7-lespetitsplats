@@ -104,7 +104,25 @@ body {
 }
 
 .fa-magnifying-glass {
-    margin-left: -2.5em;
+    margin-left: -1.8em;
+    color: lightgray;
+}
+
+.fa-x {
+    margin-left: -2.7em;
+    color: lightgray; 
+}
+
+#x-icon-ingredient {
+    visibility: hidden; 
+}
+
+#x-icon-appliance {
+    visibility: hidden; 
+}
+
+#x-icon-ustensil {
+    visibility: hidden; 
 }
 
 .button-dropdown {
@@ -166,7 +184,7 @@ body {
 }
 
 #ingredient-filter, #appliance-filter, #ustensils-filter {
-    height:15em;
+    height:8em;
     overflow-y:auto;
 }
 
