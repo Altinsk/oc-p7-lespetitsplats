@@ -248,15 +248,21 @@ function renderRecipeGrid(inputRecipes) {
 }
 
 let ingredientFilterEmpty;
-console.log(ingredientFilterEmpty)
+console.log(ingredientFilters);
 
   function arrayEmpty(array) {
-    if (array.length == 0) 
+    if (array.length == "0") {
       ingredientFilterEmpty = true;
+      console.log("filterT", ingredientFilterEmpty);
+    } else {
+      ingredientFilterEmpty = false;
+      console.log("filterF", ingredientFilterEmpty);
+    }
+
   }
 
   arrayEmpty(ingredientFilters);
-  console.log("filters", ingredientFilters.length);
+  console.log("filter2", ingredientFilterEmpty);
 
 
 
