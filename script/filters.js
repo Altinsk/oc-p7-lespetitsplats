@@ -7,7 +7,8 @@ export function generateIngredientList(inputRecipes) {
       )
     );
     // Update the array and remove duplicates
-    let uniqueIngredientList = [...new Set(ingredientList)];
+    let uniqueIngredients = new Map(ingredientList.map(s => [s.toLowerCase(), s]));
+    let uniqueIngredientList = [...uniqueIngredients.values()];
     return uniqueIngredientList;
   }
 

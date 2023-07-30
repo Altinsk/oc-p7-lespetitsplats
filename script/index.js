@@ -1,6 +1,24 @@
 import { generateIngredientList } from "./filters.js";
 import { generateApplianceList } from "./filters.js";
 import { generateUstensilList } from "./filters.js";
+import { ingredientFilters } from "./selectors/ingredient.js";
+
+// Global vraibales 
+let recipeCount;
+
+// // Capture the input elements
+const inputSearchBar = document.getElementById("input-search");
+const inputSearchIngredients = document.getElementById("input-search-ingredients");
+const xIconIngredient = document.getElementById("x-icon-ingredient");
+const inputSearchAppliances = document.getElementById("input-search-appliances");
+const xIconAppliance = document.getElementById("x-icon-appliance");
+const inputSearchUstensils = document.getElementById("input-search-ustensils");
+const xIconUstensil = document.getElementById("x-icon-ustensil");
+  
+inputSearchBar.addEventListener("input", filterRecipes);
+inputSearchIngredients.addEventListener("input", filterRecipes);
+inputSearchAppliances.addEventListener("input", filterRecipes);
+inputSearchUstensils.addEventListener("input", filterRecipes);
 
 // Card creation index home page
 function renderRecipeGrid(inputRecipes) { 
@@ -63,24 +81,37 @@ function renderRecipeGrid(inputRecipes) {
     const ingredientUl = document.getElementById("ingredient-filter");
     ingredientUl.style.paddingLeft = "0";
     ingredientUl.replaceChildren();
-    const ingredientSearch = document.getElementById("input-search-ingredients");
+    // const ingredientSearch = document.getElementById("input-search-ingredients");
   
     // Ingredient list for all ingredient tags
     let ingredientList =  generateIngredientList(inputRecipes);
-    ingredientSearch.addEventListener("input", function() {});
-    let ingredientSearchInput = ingredientSearch.value;
+    // ingredientSearch.addEventListener("input", function() {});
+    let ingredientSearchInput = inputSearchIngredients.value;
     // Filter the ingredients in the ingredient search bar
     let ingredientSearchResult = ingredientList.filter(ingredientSeachFunction);
 
     function ingredientSeachFunction(ingredientList) {
       return ingredientList.toLowerCase().includes(ingredientSearchInput);
     }
+
     // Return ingredient results when using search bar
     ingredientList = ingredientSearchResult;
+
+    // inputSearchIngredients.addEventListener("input", clicked);
+    xIconIngredient.addEventListener("click", clicked);
+    console.log(ingredientSearchInput.length);
+
+
+    function clicked() {
+      ingredientSearchInput.textContent = "hh";
+      xIconIngredient.style.visibility = "hidden"
+      console.log(ingredientSearchInput.length);
+    };  
 
     // Create ingredient list items
     ingredientList.forEach((ingredient) => {
       const ingredientTags = document.createElement("li");
+      ingredientTags.classList.add("ingredientLi");
       ingredientTags.style.listStyle =  "none";
       ingredientTags.style.textAlign = "left";
       ingredientTags.style.marginTop = "0.3em";
@@ -91,11 +122,11 @@ function renderRecipeGrid(inputRecipes) {
       ingredientUl.appendChild(ingredientTags);
     });
 
-      // Populate appliance list
-      const applianceUl = document.getElementById("appliance-filter");
-      applianceUl.style.paddingLeft = "0";
-      applianceUl.replaceChildren();
-      const applianceSearch = document.getElementById("input-search-appliances");
+    // Populate appliance list
+    const applianceUl = document.getElementById("appliance-filter");
+    applianceUl.style.paddingLeft = "0";
+    applianceUl.replaceChildren();
+    const applianceSearch = document.getElementById("input-search-appliances");
 
     // Appliance list fot all appliance tags
     let applianceList =  generateApplianceList(inputRecipes);
@@ -104,9 +135,10 @@ function renderRecipeGrid(inputRecipes) {
     // Filter the appliances in the appliance search bar
     let applianceSearchResult = applianceList.filter(applianceSeachFunction);
 
-    function applianceSeachFunction(applianceList) {
-      return applianceList.toLowerCase().includes(applianceSearchInput);
-    }
+      function applianceSeachFunction(applianceList) {
+        return applianceList.toLowerCase().includes(applianceSearchInput);
+      }
+
     // Return appliance results when using search bar
     applianceList = applianceSearchResult;
 
@@ -123,19 +155,18 @@ function renderRecipeGrid(inputRecipes) {
       applianceUl.appendChild(applianceTags);
     });
 
-
-      // Populate ustensil list
-      const ustensilsUl = document.getElementById("ustensils-filter");
-      ustensilsUl.style.paddingLeft = "0";
-      ustensilsUl.replaceChildren();
-      const ustensilSearch = document.getElementById("input-search-ustensils");
+    // Populate ustensil list
+    const ustensilsUl = document.getElementById("ustensils-filter");
+    ustensilsUl.style.paddingLeft = "0";
+    ustensilsUl.replaceChildren();
+    const ustensilSearch = document.getElementById("input-search-ustensils");
     
-      // Ustensil list for all ustensil tags
-      let ustensilList =  generateUstensilList(inputRecipes);
-      ustensilSearch.addEventListener("input", function() {});
-      let ustensilSearchInput = ustensilSearch.value;
-      // Filter the ustensil in the ustensil search bar
-      let ustensilSearchResult = ustensilList.filter(ustensilSeachFunction);
+    // Ustensil list for all ustensil tags
+    let ustensilList =  generateUstensilList(inputRecipes);
+    ustensilSearch.addEventListener("input", function() {});
+    let ustensilSearchInput = ustensilSearch.value;
+    // Filter the ustensil in the ustensil search bar
+    let ustensilSearchResult = ustensilList.filter(ustensilSeachFunction);
   
       function ustensilSeachFunction(ustensilList) {
         return ustensilList.toLowerCase().includes(ustensilSearchInput);
@@ -209,81 +240,99 @@ function renderRecipeGrid(inputRecipes) {
     // Append the card element to the container
     cardContainer.appendChild(cardColumn);
   });
+
+  // Recipe count number
+  recipeCount = inputRecipes.length;
+  const recipeCounter = document.getElementById("recipe-count");
+  recipeCounter.innerHTML = `${recipeCount} Recettes`;
 }
 
-// Capture the input elements
-const inputSearchBar = document.getElementById("input-search");
-const inputSearchIngredients = document.getElementById("input-search-ingredients");
-const xIconIngredient = document.getElementById("x-icon-ingredient");
-const inputSearchAppliances = document.getElementById("input-search-appliances");
-const xIconAppliance = document.getElementById("x-icon-appliance");
-const inputSearchUstensils = document.getElementById("input-search-ustensils");
-const xIconUstensil = document.getElementById("x-icon-ustensil");
+let ingredientFilterEmpty;
+console.log(ingredientFilterEmpty)
 
-// Add input elements event listeners
-inputSearchBar.addEventListener("input", filterRecipes);
-inputSearchIngredients.addEventListener("input", filterRecipes);
-inputSearchAppliances.addEventListener("input", filterRecipes);
-inputSearchUstensils.addEventListener("input", filterRecipes);
+  function arrayEmpty(array) {
+    if (array.length == 0) 
+      ingredientFilterEmpty = true;
+  }
 
-// Filter recipes
+  arrayEmpty(ingredientFilters);
+  console.log("filters", ingredientFilters.length);
+
+
+
+
+
+
+// inputSearchIngredients.addEventListener("input", function(){
+//   let searchIngredientsText = inputSearchIngredients.value;
+//       // Show/remove X icone in the ingredient, appliance & ustensil search bar
+//       console.log(searchIngredientsText);
+//       if (searchIngredientsText.length > 0 ) {
+//         xIconIngredient.style.visibility = "visible"
+//       } else if (searchIngredientsText.length <= 0 ) {
+//         xIconIngredient.style.visibility = "hidden"
+//       }
+// });
+
+
+
+
+
 function filterRecipes() {
+
   let searchBarText = inputSearchBar.value;
   let searchIngredientsText = inputSearchIngredients.value;
   let searchAppliancesText = inputSearchAppliances.value;
-  let searchUstensilsText = inputSearchUstensils.value;
+  let searchUstensilsText = inputSearchUstensils.value; 
 
+    // Show/remove X icone in the ingredient, appliance & ustensil search bar
+    if (searchIngredientsText.length > 0 ) {
+      xIconIngredient.style.visibility = "visible"
+    } else if (searchIngredientsText.length <= 0 ) {
+      xIconIngredient.style.visibility = "hidden"
+    }
 
-  // Show/remove X icone in the ingredient, appliance & ustensil search bar
-  if (searchIngredientsText.length > 0 ) {
-    xIconIngredient.style.visibility = "visible"
-  } else if (searchIngredientsText.length <= 0 ) {
-    xIconIngredient.style.visibility = "hidden"
-  }
+    if (searchAppliancesText.length > 0 ) {
+      xIconAppliance.style.visibility = "visible"
+    } else if (searchAppliancesText.length <= 0 ) {
+      xIconAppliance.style.visibility = "hidden"
+    }
 
-  if (searchAppliancesText.length > 0 ) {
-    xIconAppliance.style.visibility = "visible"
-  } else if (searchAppliancesText.length <= 0 ) {
-    xIconAppliance.style.visibility = "hidden"
-  }
+    if (searchUstensilsText.length > 0 ) {
+      xIconUstensil.style.visibility = "visible"
+    } else if (searchUstensilsText.length <= 0 ) {
+      xIconUstensil.style.visibility = "hidden"
+    }
 
-  if (searchUstensilsText.length > 0 ) {
-    xIconUstensil.style.visibility = "visible"
-  } else if (searchUstensilsText.length <= 0 ) {
-    xIconUstensil.style.visibility = "hidden"
-  }
-
-  if (searchBarText.length >= 3) {
-    let filteredRecipes = recipes.filter(recipe => 
-      // Meet main search criteria
-      (
-        recipe.name.includeCaseInsensitive(searchBarText) || 
-        recipe.description.includeCaseInsensitive(searchBarText) ||
-        recipe.ingredients.some(element => 
-          element.ingredient.includeCaseInsensitive(searchBarText)
-        )
-      ) 
-      &&
-      // Meet ingredient search criteria
-      (
-        recipe.ingredients.some(element => 
-          element.ingredient.includeCaseInsensitive(searchIngredientsText)
+    if (searchBarText.length >= 3) {
+      console.log("got into the function 1");
+      let filteredRecipes = recipes.filter(recipe => 
+        // Meet main search criteria
+        (
+          recipe.name.includeCaseInsensitive(searchBarText) || 
+          recipe.description.includeCaseInsensitive(searchBarText) 
+          ||
+          recipe.ingredients.some(element => 
+            element.ingredient.includeCaseInsensitive(searchBarText)
+          )
         ) 
-      ) 
-        // &&
-        // // Meet appliance search criteria
-        // (
-        // ) &&
-        // // Meet ustensils search criteria
-        // (
-        // )
-    )
-    renderRecipeGrid(filteredRecipes);
-
-  } else if (searchBarText.length < 3) {
-    renderRecipeGrid(recipes);
+      )
+      renderRecipeGrid(filteredRecipes);
+      } 
+      else if (searchBarText.length < 3) {
+        renderRecipeGrid(recipes);
+      } else if ((!ingredientFilterEmpty) && (searchBarText.length <= 0)) {
+      console.log("got into the function 2");
+      console.log(filterRecipes);
+      console.log(ingredientFilters);
+      let filteredRecipes = recipes.filter(recipe => 
+        // Meet ingredient search criteria
+        recipe.ingredients.some(element => ingredientFilters.includes(element))
+      )
+      renderRecipeGrid(filteredRecipes);
   }
-  }
+}
+  
   // let filteredRecipes = recipes.filter(recipe => 
   //   // Meet main search criteria
   //   (

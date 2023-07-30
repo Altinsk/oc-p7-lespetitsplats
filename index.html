@@ -16,7 +16,7 @@
     <script src="script/helpers.js" defer></script>
     <script type="module" src="script/index.js" defer></script>
     <script src="script/class.js" defer></script>
-    <script src="script/unit.js" defer></script>
+    <script src="script/menu.js" defer></script>
 
     <title>Les petits plats</title>
 </head>
@@ -40,80 +40,105 @@
     <main>
         <div id="filter-container" class="d-flex justify-content-around align-items-end">
             <div class="filters">
-                <div class="dropdown bg-light rounded">
-                    <div id="filter-btn" class="btn btn-primary bg-light text-dark border-0 rounded min-width-btn" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                        <button type="button" class="border-0 bg-light">
-                            Ingrédients
-                            <span>
-                                <i class="fa-solid fa-angle-down bg-light"></i>
-                            </span>    
-                        </button> 
-                    </div>
-                    <form class="dropdown-menu p-0 rounded-0 rounded-right rounded-left rounded-bottom border-0 min-width-btn bg-light mt-n1 shadow-none">
-                        <div class="mb-3">
-                            <div class="input-upper-part">
-                                <input class="form-control dropdowns" id="input-search-ingredients" placeholder="">
-                                <span> 
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </span>
+                <div>
+                    <div class="dropdown bg-light rounded" id="ingredient-dropdown">
+                        <div id="filter-btn" class="btn btn-primary bg-light text-dark border-0 rounded min-width-btn ingredient-filter-btn" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                            <button type="button" class="border-0 bg-light">
+                                Ingrédients
                                 <span>
-                                    <i class="fa-solid fa-x" id="x-icon-ingredient"></i>
-                                </span>
-                            </div>
-                            <ul id="ingredient-filter">
-                            </ul>
+                                    <i class="fa-solid fa-angle-down bg-light" id="ingredient-arr-down"></i>
+                                    <i class="fa-solid fa-angle-up" id="ingredient-arr-up"></i>
+                                </span>    
+                            </button> 
                         </div>
-                    </form>
-                </div>
-                <div class="dropdown bg-light rounded">
-                    <div id="filter-btn" class="btn btn-primary bg-light text-dark border-0 rounded min-width-btn" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                        <button type="button" class="border-0 bg-light">
-                            Appareils
-                            <span>
-                                <i class="fa-solid fa-angle-down bg-light"></i>
-                            </span>    
-                        </button> 
+                        <form class="dropdown-menu p-0 rounded-0 rounded-right rounded-left rounded-bottom border-0 min-width-btn bg-light mt-n1 shadow-none">
+                            <div class="mb-3">
+                                <div class="input-upper-part">
+                                    <input class="form-control dropdowns" id="input-search-ingredients" placeholder="">
+                                    <span> 
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </span>
+                                    <span>
+                                        <i class="fa-solid fa-x" id="x-icon-ingredient"></i>
+                                    </span>
+                                </div>
+                                <ul id="ingredient-filter">
+                                </ul>
+                            </div>
+                        </form>
                     </div>
-                    <form class="dropdown-menu p-0 rounded-0 rounded-right rounded-left rounded-bottom border-0 min-width-btn bg-light mt-n1 shadow-none">
-                        <div class="mb-3">
-                            <div class="input-upper-part">
-                                <input class="form-control dropdowns" id="input-search-appliances" placeholder="">
-                                <span> 
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                    <i class="fa-solid fa-x" id="x-icon-appliance"></i>
-                                </span>
-                            </div>
-                            <ul id="appliance-filter">
-                            </ul>
-                        </div>
-                    </form>
-                </div>
-                <div class="dropdown bg-light rounded">
-                    <div id="filter-btn" class="btn btn-primary bg-light text-dark border-0 rounded min-width-btn" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                        <button type="button" class="border-0 bg-light">
-                            Ustensiles
-                            <span>
-                                <i class="fa-solid fa-angle-down bg-light"></i>
-                            </span>    
-                        </button> 
+                    <div>
+                        <div id="ingredient-clicked"></div>
                     </div>
-                    <form class="dropdown-menu p-0 rounded-0 rounded-right rounded-left rounded-bottom border-0 min-width-btn bg-light mt-n1 shadow-none">
-                        <div class="mb-3">
-                            <div class="input-upper-part">
-                                <input class="form-control dropdowns" id="input-search-ustensils" placeholder="">
-                                <span> 
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                    <i class="fa-solid fa-x" id="x-icon-ustensil"></i>
-                                </span>
-                            </div>
-                            <ul id="ustensils-filter">
-                            </ul>
+                </div>
+                <div>
+                    <div class="dropdown bg-light rounded">
+                        <div id="filter-btn" class="btn btn-primary bg-light text-dark border-0 rounded min-width-btn" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                            <button type="button" class="border-0 bg-light">
+                                Appareils
+                                <span>
+                                    <i class="fa-solid fa-angle-down bg-light"></i>
+                                </span>    
+                            </button> 
                         </div>
-                    </form>
-                </div>    
+                        <form class="dropdown-menu p-0 rounded-0 rounded-right rounded-left rounded-bottom border-0 min-width-btn bg-light mt-n1 shadow-none">
+                            <div class="mb-3">
+                                <div class="input-upper-part">
+                                    <input class="form-control dropdowns" id="input-search-appliances" placeholder="">
+                                    <span> 
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                        <i class="fa-solid fa-x" id="x-icon-appliance"></i>
+                                    </span>
+                                </div>
+                                <ul id="appliance-filter">
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+                        <span id="appliance-clicked"></span>
+                    </div>
+                </div>
+                <div>
+                    <div class="dropdown bg-light rounded">
+                        <div id="filter-btn" class="btn btn-primary bg-light text-dark border-0 rounded min-width-btn" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                            <button type="button" class="border-0 bg-light">
+                                Ustensiles
+                                <span>
+                                    <i class="fa-solid fa-angle-down bg-light"></i>
+                                </span>    
+                            </button> 
+                        </div>
+                        <form class="dropdown-menu p-0 rounded-0 rounded-right rounded-left rounded-bottom border-0 min-width-btn bg-light mt-n1 shadow-none">
+                            <div class="mb-3">
+                                <div class="input-upper-part">
+                                    <input class="form-control dropdowns" id="input-search-ustensils" placeholder="">
+                                    <span> 
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                        <i class="fa-solid fa-x" id="x-icon-ustensil"></i>
+                                    </span>
+                                </div>
+                                <ul id="ustensils-filter">
+                                </ul>
+                            </div>
+                        </form>
+                    </div>    
+                    <div>
+                        <span id="ustensile-clicked"></span>
+                    </div>
+                </div>
+
             </div>
             <div>
                 <p id="recipe-count" class="font-weight-bolder"> 1500 receipes </p>
+            </div>
+        </div>
+        <div id="selectors">
+            <div id="ingredient-selector">
+            </div>
+            <div id="appliance-selector">
+            </div>
+            <div id="Ustensile-selector">
             </div>
         </div>
         <div class="container">
