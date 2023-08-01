@@ -204,12 +204,12 @@ body {
     margin-inline: 10px;
 }
 
-#ingredient-filter, #appliance-filter, #ustensils-filter {
+#ingredient-filter, #appliance-filter, #ustensil-filter {
     height:8em;
     overflow-y:auto;
 }
 
-#ingredient-filter li:hover, #appliance-filter li:hover, #ustensils-filter li:hover  {
+#ingredient-filter li:hover, #appliance-filter li:hover, #ustensil-filter li:hover  {
     background-color: #FFD15B;
 }
 

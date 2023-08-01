@@ -19,5 +19,3 @@ function ingredientMenuExpandedFun() {
     arrowDown.style.display = "inline";
   }
 }
-
-
