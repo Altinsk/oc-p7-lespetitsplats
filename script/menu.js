@@ -10,7 +10,6 @@ function ingredientMenuExpandedFun() {
   const arrowDown = document.getElementById("ingredient-arr-down");
   let ingredientMenuExpanded = ingredientMenu.getAttribute("aria-expanded"); 
 
-  console.log(ingredientMenuExpanded);
   if (ingredientMenuExpanded === "true") {
     arrowUp.style.display = "inline";
     arrowDown.style.display = "none";

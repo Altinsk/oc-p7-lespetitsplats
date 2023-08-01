@@ -54,9 +54,10 @@ function ingredientSelection(e) {
   ingredientFilters.forEach((ingredient) => {
     const item = document.createElement("div");
     item.style.display = "flex";
-    item.style.justifyContent = "spaceBetween";
+    item.style.justifyContent = "space-between";
     item.style.alignItems = "center";
     item.style.backgroundColor = "#FFD15B";
+    item.style.marginTop = "5px";
 
     const clicked = document.createElement("p");
     clicked.style.textAlign = "left";
@@ -92,9 +93,10 @@ function applianceSelection(e) {
   applianceFilters.forEach((appliance) => {
     const item = document.createElement("div");
     item.style.display = "flex";
-    item.style.justifyContent = "spaceBetween";
+    item.style.justifyContent = "space-between";
     item.style.alignItems = "center";
     item.style.backgroundColor = "#FFD15B";
+    item.style.marginTop = "5px";
 
     const clicked = document.createElement("p");
     clicked.style.textAlign = "left";
@@ -130,9 +132,11 @@ function ustensilSelection(e) {
   ustensilFilters.forEach((ustensil) => {
     const item = document.createElement("div");
     item.style.display = "flex";
-    item.style.justifyContent = "spaceBetween";
+    item.style.justifyContent = "space-between";
     item.style.alignItems = "center";
     item.style.backgroundColor = "#FFD15B";
+    item.style.marginTop = "5px";
+
 
     const clicked = document.createElement("p");
     clicked.style.textAlign = "left";
@@ -395,20 +399,15 @@ function renderRecipeGrid(inputRecipes) {
 }
 
 let ingredientFilterEmpty;
-console.log(ingredientFilters);
 
 function arrayEmpty(array) {
   if (array.length == "0") {
     ingredientFilterEmpty = true;
-    console.log("filterT", ingredientFilterEmpty);
   } else {
     ingredientFilterEmpty = false;
-    console.log("filterF", ingredientFilterEmpty);
   }
 }
-
 arrayEmpty(ingredientFilters);
-console.log("filter2", ingredientFilterEmpty);
 
 function filterRecipes() {
   let searchBarText = inputSearchBar.value;
@@ -436,9 +435,9 @@ function filterRecipes() {
   }
 
   let searchBarInput = "";
-  let ingredientFilter = ingredientFilters;
-  let applianceFilter = [];
-  let utensileFilter = [];
+  // let ingredientFilter = ingredientFilters;
+  // let applianceFilter = [];
+  // let utensileFilter = [];
   let filteredRecipes = [];
 
   if (searchBarText.length >= 3) {
@@ -462,33 +461,6 @@ function filterRecipes() {
     containsAllStrings(recipe.ustensils, ustensilFilters)
   )
   renderRecipeGrid(filteredRecipes);
-
-  // if (searchBarText.length >= 3) {
-  //   console.log("got into the function 1");
-  //   let filteredRecipes = recipes.filter(recipe => 
-  //     // Meet main search criteria
-  //     (
-  //       recipe.name.includeCaseInsensitive(searchBarText) || 
-  //       recipe.description.includeCaseInsensitive(searchBarText) 
-  //       ||
-  //       recipe.ingredients.some(element => 
-  //         element.ingredient.includeCaseInsensitive(searchBarText)
-  //       )
-  //     ) 
-  //   )
-  //   renderRecipeGrid(filteredRecipes);
-  // } else if (searchBarText.length < 3) {
-  //     renderRecipeGrid(recipes);
-  // } else if ((!ingredientFilterEmpty) && (searchBarText.length <= 0)) {
-  //   console.log("got into the function 2");
-  //   console.log(filterRecipes);
-  //   console.log(ingredientFilters);
-  //   let filteredRecipes = recipes.filter(recipe => 
-  //     // Meet ingredient search criteria
-  //     recipe.ingredients.some(element => ingredientFilters.includes(element))
-  //   )
-  //   renderRecipeGrid(filteredRecipes);
-  // }
 }
 
 renderRecipeGrid(recipes);
