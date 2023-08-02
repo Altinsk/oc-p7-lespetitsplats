@@ -3,26 +3,21 @@ import { generateApplianceList } from "./filters.js";
 import { generateUstensilList } from "./filters.js";
 
 // Global variables
-let searchBarInput = "";
 let ingredientFilters = [];
 let applianceFilters = [];
 let ustensilFilters = [];
-// let filteredRecipeList = recipes;
 let recipeCount;
 
 // Capture the input elements
 const inputSearchBar = document.getElementById("input-search");
-
 const inputSearchIngredients = document.getElementById("input-search-ingredients");
 const xIconIngredient = document.getElementById("x-icon-ingredient");
 const ingredientFilter = document.getElementById("ingredient-filter");
 const ingredientSelector = document.getElementById("ingredient-selector");
-
 const inputSearchAppliances = document.getElementById("input-search-appliances");
 const xIconAppliance = document.getElementById("x-icon-appliance");
 const applianceFilter = document.getElementById("appliance-filter");
 const applianceSelector = document.getElementById("appliance-selector");
-
 const inputSearchUstensils = document.getElementById("input-search-ustensils");
 const xIconUstensil = document.getElementById("x-icon-ustensil");
 const ustensilFilter = document.getElementById("ustensil-filter");
@@ -30,15 +25,12 @@ const ustensilSelector = document.getElementById("ustensil-selector");
 
 // Add event listeners
 inputSearchBar.addEventListener("input", filterRecipes);
-
 inputSearchIngredients.addEventListener("input", filterRecipes);
 xIconIngredient.addEventListener("click", clearIngredientSearchBar);
 ingredientFilter.addEventListener('click', ingredientSelection);
-
 inputSearchAppliances.addEventListener("input", filterRecipes);
 xIconAppliance.addEventListener("click", clearApplianceSearchBar);
 applianceFilter.addEventListener('click', applianceSelection);
-
 inputSearchUstensils.addEventListener("input", filterRecipes);
 xIconUstensil.addEventListener("click", clearUstensilSearchBar);
 ustensilFilter.addEventListener('click', ustensilSelection);
@@ -209,6 +201,18 @@ function renderRecipeGrid(inputRecipes) {
     cardImage.alt = "recipe picture";
     cardImage.style.borderRadius = "2em 2em 0 0";
 
+    // Create the time span
+    const timeSpan = document.createElement("span");
+    timeSpan.classList.add("time-span");
+    timeSpan.textContent = recipe.time + "min";
+    timeSpan.style.backgroundColor = "#FFD15B";
+    timeSpan.style.color = "black";
+    timeSpan.style.padding = "0.1em 0.5em"
+    timeSpan.style.position = "absolute";
+    timeSpan.style.right = "10%";
+    timeSpan.style.top = "3%";
+    timeSpan.style.borderRadius = "0.5em";
+
     // Create the card body
     const cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
@@ -241,7 +245,6 @@ function renderRecipeGrid(inputRecipes) {
     const ingredientUl = document.getElementById("ingredient-filter");
     ingredientUl.style.paddingLeft = "0";
     ingredientUl.replaceChildren();
-    // const ingredientSearch = document.getElementById("input-search-ingredients");
   
     // Ingredient list for all ingredient tags
     let ingredientList =  generateIngredientList(inputRecipes);
@@ -279,7 +282,6 @@ function renderRecipeGrid(inputRecipes) {
 
     // Appliance list fot all appliance tags
     let applianceList =  generateApplianceList(inputRecipes);
-    // applianceSearch.addEventListener("input", function() {});
     let applianceSearchInput = applianceSearch.value;
     // Filter the appliances in the appliance search bar
     let applianceSearchResult = applianceList.filter(applianceSeachFunction);
@@ -374,6 +376,7 @@ function renderRecipeGrid(inputRecipes) {
 
     // Append the card image to the card element
     cardElement.appendChild(cardImage);
+    cardElement.appendChild(timeSpan);
 
     // Append the title, content and ingredient container to the card body
     cardBody.appendChild(cardTitle);
@@ -435,9 +438,6 @@ function filterRecipes() {
   }
 
   let searchBarInput = "";
-  // let ingredientFilter = ingredientFilters;
-  // let applianceFilter = [];
-  // let utensileFilter = [];
   let filteredRecipes = [];
 
   if (searchBarText.length >= 3) {
