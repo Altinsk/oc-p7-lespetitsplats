@@ -62,7 +62,7 @@ body {
 
 .fa-search {
     width: 100%;
-    padding: 9px 4px 9px 4px;
+    padding: 10px 0px;
     text-align: center;
     color: white;
 
@@ -72,7 +72,7 @@ body {
     width: 2.4em;
     max-height: 2.8em;
     border-radius: 0.3em;
-    margin-left: -3em;
+    margin-left: -2.6em;
     background-color: black;
     z-index: 999;
 }
@@ -89,8 +89,18 @@ body {
     padding: 1em;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     gap: 8em;
+}
+
+#selectors {
+    margin-left: 6em;
+    margin-top: 0.2em;
+    padding: 1em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2em;
 }
 
 .form-control {
@@ -104,7 +114,25 @@ body {
 }
 
 .fa-magnifying-glass {
-    margin-left: -1.5em;
+    margin-left: -1.8em;
+    color: lightgray;
+}
+
+.fa-x {
+    margin-left: -2.7em;
+    color: lightgray; 
+}
+
+#x-icon-ingredient {
+    visibility: hidden; 
+}
+
+#x-icon-appliance {
+    visibility: hidden; 
+}
+
+#x-icon-ustensil {
+    visibility: hidden; 
 }
 
 .button-dropdown {
@@ -122,7 +150,19 @@ body {
     margin-top: -5px !important;
   }
 
+#ingredient-arr-up {
+    display: none;
+}
+
+#ingredient-arr-down {
+    display: inline;
+}
 .fa-angle-down {
+    margin-left: 4em;
+    color: #9b9da1;
+} 
+
+.fa-angle-up {
     margin-left: 4em;
     color: #9b9da1;
 } 
@@ -162,7 +202,18 @@ body {
 
 .dropdowns {
     margin-bottom: 10px;
+    margin-inline: 10px;
 }
+
+#ingredient-filter, #appliance-filter, #ustensil-filter {
+    height:8em;
+    overflow-y:auto;
+}
+
+#ingredient-filter li:hover, #appliance-filter li:hover, #ustensil-filter li:hover  {
+    background-color: #FFD15B;
+}
+
 /* On screens that are between 706px and 992px */
 @media screen and (min-width:705.98px) and  (max-width: 991.98px) {
     .filters {
@@ -196,6 +247,9 @@ body {
         padding: 0em;
     }
     .fa-angle-down {
+        margin-left: 0;
+    }
+    .fa-angle-up {
         margin-left: 0;
     }
     .drop-menu {
@@ -249,6 +303,10 @@ body {
         margin-left: 0em;
         padding: 0.1em;
         gap: 0.5em;
+    }
+    #selectors {
+        margin-left: 0.2em;
+        margin-top: 0.2em;
     }
     #filter-btn {
         padding: 0;
