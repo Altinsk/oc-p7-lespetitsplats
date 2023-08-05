@@ -50,7 +50,7 @@ ustensilDropdown.addEventListener('hidden.bs.dropdown', ustensilMenuExpandedFun)
 function ustensilMenuExpandedFun() {
   const arrowUp = document.getElementById("ustensil-arr-up");
   const arrowDown = document.getElementById("ustensil-arr-down");
-  let ustensilMenuExpanded = applianceMenu.getAttribute("aria-expanded"); 
+  let ustensilMenuExpanded = ustensilMenu.getAttribute("aria-expanded"); 
 
   if (ustensilMenuExpanded === "true") {
     arrowUp.style.display = "inline";
