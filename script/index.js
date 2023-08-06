@@ -43,26 +43,22 @@ function ingredientSelection(e) {
     ingredientFilters.push(filterContent);
   }
   ingredientSelector.replaceChildren();
-  for (let i = 0; i < ingredientFilters.length; i++) {
-    const ingredient = ingredientFilters[i];
-    let item = ingredient[i];
-    item = document.createElement("div");
+  ingredientFilters.forEach((ingredient) => {
+    const item = document.createElement("div");
     item.style.display = "flex";
     item.style.justifyContent = "space-between";
     item.style.alignItems = "center";
     item.style.backgroundColor = "#FFD15B";
     item.style.marginTop = "5px";
 
-    let clicked = ingredient[i];
-    clicked = document.createElement("p");
+    const clicked = document.createElement("p");
     clicked.style.textAlign = "left";
     clicked.style.color = "black";
     clicked.style.borderRadius = "5px";
     clicked.style.padding = "5px";
     clicked.style.margin = "0";
 
-    let clearButton = ingredient[i];
-    clearButton = document.createElement("button");
+    const clearButton = document.createElement("button");
     clearButton.addEventListener('click', e => {
       ingredientFilters = ingredientFilters.filter(item => item !== ingredient);
       item.remove();
@@ -70,11 +66,12 @@ function ingredientSelection(e) {
     })
     clearButton.classList.add("btn-close");
     clearButton.style.height = "0.2em";
+    // ingredientX.style.paddingLeft = "5px"
     clicked.textContent = ingredient;
     item.appendChild(clicked);
     item.appendChild(clearButton);
     ingredientSelector.appendChild(item);
-  }
+  });
   filterRecipes();
 }
 
@@ -85,26 +82,22 @@ function applianceSelection(e) {
     applianceFilters.push(filterContent);
   }
   applianceSelector.replaceChildren();
-  for (let i = 0; i < applianceFilters.length; i++) {
-    const appliance = applianceFilters[i];
-    let item = appliance[i];
-    item = document.createElement("div");
+  applianceFilters.forEach((appliance) => {
+    const item = document.createElement("div");
     item.style.display = "flex";
     item.style.justifyContent = "space-between";
     item.style.alignItems = "center";
     item.style.backgroundColor = "#FFD15B";
     item.style.marginTop = "5px";
 
-    let clicked = appliance[i];
-    clicked = document.createElement("p");
+    const clicked = document.createElement("p");
     clicked.style.textAlign = "left";
     clicked.style.color = "black";
     clicked.style.borderRadius = "5px";
     clicked.style.padding = "5px";
     clicked.style.margin = "0";
 
-    let clearButton = appliance[i];
-    clearButton = document.createElement("button");
+    const clearButton = document.createElement("button");
     clearButton.addEventListener('click', e => {
       applianceFilters = applianceFilters.filter(item => item !== appliance);
       item.remove();
@@ -117,7 +110,7 @@ function applianceSelection(e) {
     item.appendChild(clicked);
     item.appendChild(clearButton);
     applianceSelector.appendChild(item);
-  }
+  });
   filterRecipes();
 }
 
@@ -128,26 +121,23 @@ function ustensilSelection(e) {
     ustensilFilters.push(filterContent);
   }
   ustensilSelector.replaceChildren();
-  for (let i = 0; i < ustensilFilters.length; i++) {
-    const ustensil = ustensilFilters[i];
-    let item = ustensil[i];
-    item = document.createElement("div");
+  ustensilFilters.forEach((ustensil) => {
+    const item = document.createElement("div");
     item.style.display = "flex";
     item.style.justifyContent = "space-between";
     item.style.alignItems = "center";
     item.style.backgroundColor = "#FFD15B";
     item.style.marginTop = "5px";
 
-    let clicked = ustensil[i];
-    clicked = document.createElement("p");
+
+    const clicked = document.createElement("p");
     clicked.style.textAlign = "left";
     clicked.style.color = "black";
     clicked.style.borderRadius = "5px";
     clicked.style.padding = "5px";
     clicked.style.margin = "0";
 
-    let clearButton = ustensil[i];
-    clearButton = document.createElement("button");
+    const clearButton = document.createElement("button");
     clearButton.addEventListener('click', e => {
       ustensilFilters = ustensilFilters.filter(item => item !== ustensil);
       item.remove();
@@ -160,7 +150,7 @@ function ustensilSelection(e) {
     item.appendChild(clicked);
     item.appendChild(clearButton);
     ustensilSelector.appendChild(item);
-  }
+  });
   filterRecipes();
 }
 
@@ -182,42 +172,38 @@ function clearUstensilSearchBar() {
   filterRecipes();
 };
 
-// Card creation index home page
-function renderRecipeGrid(inputRecipes) {
   // Get the container element where the cards will be displayed
   const cardContainer = document.getElementById("card-container");
+
+// Card creation index home page
+function renderRecipeGrid(inputRecipes) {
 
   // Remove recipe container children
   cardContainer.replaceChildren();
 
   // Generate the grid of cards
-  for (let i = 0; i < inputRecipes.length; i++) {
-    const recipe = inputRecipes[i];
+  inputRecipes.forEach((recipe) => {
     // Create card column 
-    let cardColumn = recipe[i];
-    cardColumn = document.createElement("div");
+    const cardColumn = document.createElement("div");
     cardColumn.classList.add("col", "mb-5");
     cardColumn.style.borderRadius = "2em 2em 0 0";
 
     // Create a card element
-    let cardElement = recipe[i];
-    cardElement = document.createElement("div");
+    const cardElement = document.createElement("div");
     cardElement.classList.add("card", "h-100", "border-0");
     cardElement.style.maxWidth = "20em";
     cardElement.style.marginTop = "3em";
     cardElement.style.borderRadius = "2em 2em 2em 2em";
 
     // Create the card image
-    let cardImage = recipe[i];
-    cardImage = document.createElement("img");
+    const cardImage = document.createElement("img");
     cardImage.classList.add("card-img-top");
     cardImage.src = `css/media/${recipe.image}`;
     cardImage.alt = "recipe picture";
     cardImage.style.borderRadius = "2em 2em 0 0";
 
     // Create the time span
-    let timeSpan = recipe[i];
-    timeSpan = document.createElement("span");
+    const timeSpan = document.createElement("span");
     timeSpan.classList.add("time-span");
     timeSpan.textContent = recipe.time + "min";
     timeSpan.style.backgroundColor = "#FFD15B";
@@ -229,42 +215,35 @@ function renderRecipeGrid(inputRecipes) {
     timeSpan.style.borderRadius = "0.5em";
 
     // Create the card body
-    let cardBody = recipe[i];
-    cardBody = document.createElement("div");
+    const cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
 
     // Create the card title
-    let cardTitle = recipe[i];
-    cardTitle = document.createElement("h2");
+    const cardTitle = document.createElement("h2");
     cardTitle.classList.add("card-title", "fs-4", "fw-bolder", "mb-5");
     cardTitle.textContent = recipe.name;
 
     // Create the description title
-    let cardDescriptionTitle = recipe[i];
-    cardDescriptionTitle = document.createElement("p");
+    const cardDescriptionTitle = document.createElement("p");
     cardDescriptionTitle.classList.add("card-title", "fs-5", "fw-light");
     cardDescriptionTitle.textContent = "RECETTE";
 
     // Create the card description
-    let cardContent = recipe[i];
-    cardContent = document.createElement("p");
+    const cardContent = document.createElement("p");
     cardContent.classList.add("card-text", "cuttoff-text", "fs-5", "mb-5");
     cardContent.textContent = recipe.description;
 
     // Create the Ingredient title
-    let cardIngredientTitle = recipe[i];
-    cardIngredientTitle = document.createElement("p");
+    const cardIngredientTitle = document.createElement("p");
     cardIngredientTitle.classList.add("card-title", "fs-5", "fw-light");
     cardIngredientTitle.textContent = "INGRÉDIENTS";
 
     // Create the card ingredients
-    let ingredientContainer = recipe[i];
-    ingredientContainer = document.createElement("div");
+    const ingredientContainer = document.createElement("div");
     ingredientContainer.classList.add("row", "row-cols-1", "row-cols-md-2", "g-4");
 
     // Populate ingredient list
-    let ingredientUl = recipe[i];
-    ingredientUl = document.getElementById("ingredient-filter");
+    const ingredientUl = document.getElementById("ingredient-filter");
     ingredientUl.style.paddingLeft = "0";
     ingredientUl.replaceChildren();
   
@@ -283,10 +262,8 @@ function renderRecipeGrid(inputRecipes) {
     ingredientList = ingredientSearchResult;
 
     // Create ingredient list items
-    for (let i = 0; i < ingredientList.length; i++) {
-      const ingredient = ingredientList[i];
-      let ingredientTags = ingredient[i];
-      ingredientTags = document.createElement("li");
+    ingredientList.forEach((ingredient) => {
+      const ingredientTags = document.createElement("li");
       ingredientTags.classList.add("ingredientLi");
       ingredientTags.style.listStyle =  "none";
       ingredientTags.style.textAlign = "left";
@@ -296,7 +273,7 @@ function renderRecipeGrid(inputRecipes) {
       ingredientTags.style.textIndent = "0.8em";
       ingredientTags.textContent = ingredient;
       ingredientUl.appendChild(ingredientTags);
-    };
+    });
 
     // Populate appliance list
     const applianceUl = document.getElementById("appliance-filter");
@@ -318,10 +295,8 @@ function renderRecipeGrid(inputRecipes) {
     applianceList = applianceSearchResult;
 
     // Populate appliance list
-    for (let i = 0; i < applianceList.length; i++) {
-      const appliance = applianceList[i];
-      let applianceTags = appliance[i];
-      applianceTags = document.createElement("li");
+    applianceList.forEach((appliance) => {
+      const applianceTags = document.createElement("li");
       applianceTags.classList.add("applianceLi");
       applianceTags.style.listStyle =  "none";
       applianceTags.style.textAlign = "left";
@@ -331,7 +306,7 @@ function renderRecipeGrid(inputRecipes) {
       applianceTags.style.textIndent = "0.8em";
       applianceTags.textContent = appliance;
       applianceUl.appendChild(applianceTags);
-    };
+    });
 
     // Populate ustensil list
     const ustensilsUl = document.getElementById("ustensil-filter");
@@ -353,10 +328,8 @@ function renderRecipeGrid(inputRecipes) {
       ustensilList = ustensilSearchResult;
   
     // Populate ustensil list
-    for (let i = 0; i < ustensilList.length; i++ ) {
-      const ustensil = ustensilList[i];
-      let ustensilsTags = ustensil[i];
-      ustensilsTags = document.createElement("li");
+    ustensilList.forEach((ustensil) => {
+      const ustensilsTags = document.createElement("li");
       ustensilsTags.classList.add("ustensilLi");
       ustensilsTags.style.listStyle =  "none";
       ustensilsTags.style.textAlign = "left";
@@ -366,23 +339,21 @@ function renderRecipeGrid(inputRecipes) {
       ustensilsTags.style.textIndent = "0.8em";
       ustensilsTags.textContent = ustensil;
       ustensilsUl.appendChild(ustensilsTags);
-    };
+    });
 
     // Constructing the cards body and elements
-    for (let i = 0; i < recipe.ingredients.length; i++) {
-      const ingredient = recipe.ingredients[i];
-      let ingredientElement = ingredient[i]
-      ingredientElement = document.createElement("div");
+    recipe.ingredients.forEach((ingredient) => {
+
+      // Create the ingredient body
+      const ingredientElement = document.createElement("div");
 
       // Create the ingredient label
-      let ingredientLabel = recipe.ingredients[i];
-      ingredientLabel = document.createElement("p");
+      const ingredientLabel = document.createElement("p");
       ingredientLabel.textContent = ingredient.ingredient;
       ingredientLabel.classList.add("card-text", "fs-5", "m-0", "ps-3");
 
       // Create the ingredient quantity
-      let ingredientQuantity = recipe.ingredients[i];
-      ingredientQuantity = document.createElement("p");
+      const ingredientQuantity = document.createElement("p");
       ingredientQuantity.classList.add("card-text", "fs-5", "fw-light", "ps-3");
       let unitLabel = "";
       if ("unit" in ingredient) {
@@ -402,7 +373,7 @@ function renderRecipeGrid(inputRecipes) {
 
       // Append the ingredient element the ingredient container
       ingredientContainer.appendChild(ingredientElement);
-    };
+    });
 
     // Append the card image to the card element
     cardElement.appendChild(cardImage);
@@ -423,7 +394,7 @@ function renderRecipeGrid(inputRecipes) {
 
     // Append the card element to the container
     cardContainer.appendChild(cardColumn);
-  }
+  });
 
   // Recipe count number
   recipeCount = inputRecipes.length;
@@ -480,7 +451,11 @@ function filterRecipes() {
     containsAllStrings(recipe.ustensils, ustensilFilters)
   )
   renderRecipeGrid(filteredRecipes);
+  if (filteredRecipes.length === 0) {
+    cardContainer.replaceChildren();
+    cardContainer.innerHTML = `Aucune recette ne contient "${searchBarText}" vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
+  }
 }
 
-renderRecipeGrid(recipes);
 
+renderRecipeGrid(recipes);
