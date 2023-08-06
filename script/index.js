@@ -172,10 +172,11 @@ function clearUstensilSearchBar() {
   filterRecipes();
 };
 
-// Card creation index home page
-function renderRecipeGrid(inputRecipes) {
   // Get the container element where the cards will be displayed
   const cardContainer = document.getElementById("card-container");
+
+// Card creation index home page
+function renderRecipeGrid(inputRecipes) {
 
   // Remove recipe container children
   cardContainer.replaceChildren();
@@ -401,17 +402,6 @@ function renderRecipeGrid(inputRecipes) {
   recipeCounter.innerHTML = `${recipeCount} ${recipeCount > 1 ? "Recetes" : "Recette"} `;
 }
 
-let ingredientFilterEmpty;
-
-function arrayEmpty(array) {
-  if (array.length == "0") {
-    ingredientFilterEmpty = true;
-  } else {
-    ingredientFilterEmpty = false;
-  }
-}
-arrayEmpty(ingredientFilters);
-
 function filterRecipes() {
   let searchBarText = inputSearchBar.value;
   let searchIngredientsText = inputSearchIngredients.value;
@@ -461,6 +451,11 @@ function filterRecipes() {
     containsAllStrings(recipe.ustensils, ustensilFilters)
   )
   renderRecipeGrid(filteredRecipes);
+  if (filteredRecipes.length === 0) {
+    cardContainer.replaceChildren();
+    cardContainer.innerHTML = `Aucune recette ne contient ${searchBarText} vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
+  }
 }
+
 
 renderRecipeGrid(recipes);
