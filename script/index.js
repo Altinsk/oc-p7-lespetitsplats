@@ -66,7 +66,7 @@ function ingredientSelection(e) {
       ingredientFilters = ingredientFilters.filter(item => item !== ingredient);
       item.remove();
       filterRecipes();
-    })
+    });
     clearButton.classList.add("btn-close");
     clearButton.style.height = "0.2em";
     // ingredientX.style.paddingLeft = "5px"
@@ -105,7 +105,7 @@ function applianceSelection(e) {
       applianceFilters = applianceFilters.filter(item => item !== appliance);
       item.remove();
       filterRecipes();
-    })
+    });
     clearButton.classList.add("btn-close");
     clearButton.style.height = "0.2em";
     // ingredientX.style.paddingLeft = "5px"
@@ -145,7 +145,7 @@ function ustensilSelection(e) {
       ustensilFilters = ustensilFilters.filter(item => item !== ustensil);
       item.remove();
       filterRecipes();
-    })
+    });
     clearButton.classList.add("btn-close");
     clearButton.style.height = "0.2em";
     // ingredientX.style.paddingLeft = "5px"
@@ -161,19 +161,19 @@ function clearIngredientSearchBar() {
   inputSearchIngredients.value = "";
   xIconIngredient.style.visibility = "hidden";
   filterRecipes();
-};
+}
 
 function clearApplianceSearchBar() {
   inputSearchAppliances.value = "";
   xIconAppliance.style.visibility = "hidden";
   filterRecipes();
-};
+}
 
 function clearUstensilSearchBar() {
   inputSearchUstensils.value = "";
   xIconUstensil.style.visibility = "hidden";
   filterRecipes();
-};
+}
 
 // Card creation index home page
 function renderRecipeGrid(inputRecipes) {
@@ -207,7 +207,7 @@ function renderRecipeGrid(inputRecipes) {
     timeSpan.textContent = recipe.time + "min";
     timeSpan.style.backgroundColor = "#FFD15B";
     timeSpan.style.color = "black";
-    timeSpan.style.padding = "0.1em 0.5em"
+    timeSpan.style.padding = "0.1em 0.5em";
     timeSpan.style.position = "absolute";
     timeSpan.style.right = "10%";
     timeSpan.style.top = "3%";
@@ -409,21 +409,21 @@ function filterRecipes() {
 
   // Show/remove X icone in the ingredient, appliance & ustensil search bar
   if (searchIngredientsText.length > 0 ) {
-    xIconIngredient.style.visibility = "visible"
+    xIconIngredient.style.visibility = "visible";
   } else if (searchIngredientsText.length <= 0 ) {
-    xIconIngredient.style.visibility = "hidden"
+    xIconIngredient.style.visibility = "hidden";
   }
 
   if (searchAppliancesText.length > 0 ) {
-    xIconAppliance.style.visibility = "visible"
+    xIconAppliance.style.visibility = "visible";
   } else if (searchAppliancesText.length <= 0 ) {
-    xIconAppliance.style.visibility = "hidden"
+    xIconAppliance.style.visibility = "hidden";
   }
 
   if (searchUstensilsText.length > 0 ) {
-    xIconUstensil.style.visibility = "visible"
+    xIconUstensil.style.visibility = "visible";
   } else if (searchUstensilsText.length <= 0 ) {
-    xIconUstensil.style.visibility = "hidden"
+    xIconUstensil.style.visibility = "hidden";
   }
 
   let searchBarInput = "";
@@ -439,16 +439,16 @@ function filterRecipes() {
       || recipe.description.includeCaseInsensitive(searchBarInput) 
       || recipe.ingredients.some(element => element.ingredient.includeCaseInsensitive(searchBarInput))
     )
-  )
+  );
   filteredRecipes = filteredRecipes.filter(recipe =>
     containsAllStrings(recipe.ingredients.map(element => element.ingredient), ingredientFilters)
-  )
+  );
   filteredRecipes = filteredRecipes.filter(recipe =>
     containsAllStrings([recipe.appliance], applianceFilters)
-  )
+  );
   filteredRecipes = filteredRecipes.filter(recipe =>
     containsAllStrings(recipe.ustensils, ustensilFilters)
-  )
+  );
   renderRecipeGrid(filteredRecipes);
   if (filteredRecipes.length === 0) {
     cardContainer.innerHTML = `Aucune recette ne contient "${searchBarText}" vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
