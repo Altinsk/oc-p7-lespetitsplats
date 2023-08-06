@@ -453,7 +453,7 @@ function filterRecipes() {
   renderRecipeGrid(filteredRecipes);
   if (filteredRecipes.length === 0) {
     cardContainer.replaceChildren();
-    cardContainer.innerHTML = `Aucune recette ne contient ${searchBarText} vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
+    cardContainer.innerHTML = `Aucune recette ne contient "${searchBarText}" vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
   }
 }
 
