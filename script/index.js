@@ -8,6 +8,8 @@ let applianceFilters = [];
 let ustensilFilters = [];
 let recipeCount;
 
+  // Get the container element where the cards will be displayed
+  const cardContainer = document.getElementById("card-container");
 // Capture the input elements
 const inputSearchBar = document.getElementById("input-search");
 const inputSearchIngredients = document.getElementById("input-search-ingredients");
@@ -184,9 +186,6 @@ function clearUstensilSearchBar() {
 
 // Card creation index home page
 function renderRecipeGrid(inputRecipes) {
-  // Get the container element where the cards will be displayed
-  const cardContainer = document.getElementById("card-container");
-
   // Remove recipe container children
   cardContainer.replaceChildren();
 
@@ -480,6 +479,9 @@ function filterRecipes() {
     containsAllStrings(recipe.ustensils, ustensilFilters)
   )
   renderRecipeGrid(filteredRecipes);
+  if (filteredRecipes.length === 0) {
+    cardContainer.innerHTML = `Aucune recette ne contient "${searchBarText}" vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
+  }
 }
 
 renderRecipeGrid(recipes);
