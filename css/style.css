@@ -143,7 +143,7 @@ body {
 }
 
 .min-width-btn {
-    min-width: 160px;
+    min-width: 130px;
 }
 
 .mt-n1 {
@@ -255,6 +255,9 @@ margin-bottom: 10px; /* Added */
     .col {
         min-width: 340px;
     }
+    .ingredientLi, .applianceLi, .ustensilLi{
+        font-size: 12px;
+    } 
 }
 
   /* On screens that are 506px and 706px */
@@ -318,7 +321,7 @@ margin-bottom: 10px; /* Added */
         margin-top: 4em;
     }
     .ingredientLi, .applianceLi, .ustensilLi{
-        font-size: 12px;
+        font-size: 10px;
     } 
 }
 
