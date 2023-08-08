@@ -201,6 +201,7 @@ body {
 .container {
     display: flex;
     justify-content: center;
+    max-width: 106em;
 }
 
 .cuttoff-text {
@@ -247,7 +248,7 @@ body {
         padding: 0.2em;
         gap: 1.5em;
     }
-    #filter-btn {
+    .filter-btn {
         padding: 0em;
     }
     #input-group {
@@ -275,7 +276,7 @@ body {
         padding: 0.2em;
         gap: 2.5em;
     }
-    #filter-btn {
+    .filter-btn {
         padding: 0em;
     }
     .fa-angle-down {
@@ -317,7 +318,6 @@ body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 150px;
     }
     .col {
         min-width: 280px;
@@ -343,7 +343,7 @@ body {
         margin-left: 0.2em;
         margin-top: 0.2em;
     }
-    #filter-btn {
+    .filter-btn {
         padding: 0;
     }
     .fa-angle-down {
@@ -406,5 +406,3 @@ body {
         font-size: 10px;
     } 
 }
-
-

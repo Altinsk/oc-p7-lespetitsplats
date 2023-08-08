@@ -202,7 +202,7 @@ function renderRecipeGrid(inputRecipes) {
     let cardElement = recipe[i];
     cardElement = document.createElement("div");
     cardElement.classList.add("card", "h-100", "border-0");
-    cardElement.style.maxWidth = "26em";
+    cardElement.style.maxWidth = "100em";
     cardElement.style.marginTop = "3em";
     cardElement.style.borderRadius = "2em 2em 2em 2em";
 
