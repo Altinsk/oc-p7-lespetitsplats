@@ -202,7 +202,7 @@ function renderRecipeGrid(inputRecipes) {
     let cardElement = recipe[i];
     cardElement = document.createElement("div");
     cardElement.classList.add("card", "h-100", "border-0");
-    cardElement.style.maxWidth = "20em";
+    cardElement.style.maxWidth = "26em";
     cardElement.style.marginTop = "3em";
     cardElement.style.borderRadius = "2em 2em 2em 2em";
 
@@ -223,7 +223,7 @@ function renderRecipeGrid(inputRecipes) {
     timeSpan.style.color = "black";
     timeSpan.style.padding = "0.1em 0.5em";
     timeSpan.style.position = "absolute";
-    timeSpan.style.right = "10%";
+    timeSpan.style.right = "15%";
     timeSpan.style.top = "3%";
     timeSpan.style.borderRadius = "0.5em";
 
